@@ -1,1 +1,67 @@
 
+#include <iostream>
+
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+int getMiddle(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow->data;
+}
+
+int main() {
+    // create a linked list with 5 nodes
+    Node* head = new Node();
+    head->data = 1;
+    head->next = new Node();
+    head->next->data = 2;
+    head->next->next = new Node();
+    head->next->next->data = 3;
+    head->next->next->next = new Node();
+    head->next->next->next->data = 4;
+    head->next->next->next->next = new Node();
+    head->next->next->next->next->data = 5;
+    head->next->next->next->next->next = NULL;
+
+    // call the getMiddle() function and print the result
+    cout << getMiddle(head) << endl; // Output: 3
+
+    return 0;
+}
+
+
+The algorithm for finding the middle element in a singly linked list involves two pointers - a slow pointer and a fast pointer.
+The slow pointer traverses the list one node at a time while the fast pointer traverses the list two nodes at a time.
+This ensures that when the fast pointer reaches the end of the list, the slow pointer is at the middle node.
+
+If the number of nodes in the linked list is even, there are two middle nodes - the one at the floor(n/2)th position and the one at the ceil(n/2)th position. 
+In this case, the algorithm returns the second middle element.
+
+To implement the algorithm, we start by initializing both the slow and fast pointers to the head of the linked list.
+We then traverse the list using the fast pointer and update the slow pointer one node at a time.
+When the fast pointer reaches the end of the list, the slow pointer is at the middle node or the node before the middle node, 
+depending on whether the number of nodes is odd or even.
+
+int getMiddle(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow->data;
+}
+
+This function takes a reference to the head of the linked list as input and returns the data at the middle node.
+If the linked list is empty, the function returns -1 (assuming that -1 is not a valid data value in the linked list).
