@@ -1,1 +1,14 @@
+To find the index of the Current Index Member in the new changed queue, we need to know basic things as follows:
 
+1. The current index value of the queue before the change.
+2. The index value of the member that were removed from the queue.
+3. The new order of the remaining members in the queue after the removal.
+4. We can follow these steps to find the index of the Current Index Member in the new queue:
+
+Subtract the number of removed members that had a lower index value than the current index value from the current index value.
+For example, if the current index value was 5 and 2 members with index values of 3 and 4 were removed, the new current index value would be 5 - 2 = 3.
+If the new current index value is greater than or equal to the size of the new queue, wrap it around to the beginning of the queue.
+For example, if the new queue has 7 members and the new current index value is 8, it would wrap around to 1 (since the queue is circular).
+If the new current index value is negative, wrap it around to the end of the queue. 
+For example, if the new queue has 7 members and the new current index value is -1, it would wrap around to 7.
+Once we have calculated the new current index value, we can use it to find the index of the Current Index Member in the new queue.
